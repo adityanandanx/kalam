@@ -1,5 +1,6 @@
 "use client";
 import { cn } from "@/lib/utils";
+import { useControlsStore } from "@/lib/store";
 import React from "react";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
@@ -20,6 +21,8 @@ import { Input } from "../ui/input";
 import { ColorPicker } from "../ui/color-picker";
 
 const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
+  const store = useControlsStore();
+
   return (
     <div
       className={cn(
@@ -50,6 +53,8 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                 name="text"
                 className="m-0 min-h-[512px]"
                 placeholder="Put your text here."
+                value={store.text}
+                onChange={(e) => store.setText(e.target.value)}
               />
             </AccordionContent>
           </AccordionItem>
@@ -68,7 +73,8 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="paper_x"
                     name="paper_x"
-                    className=""
+                    value={store.paper_x}
+                    onChange={(e) => store.setPaperX(Number(e.target.value))}
                     placeholder="Page Width"
                   />
                 </div>
@@ -83,7 +89,8 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="paper_y"
                     name="paper_y"
-                    className=""
+                    value={store.paper_y}
+                    onChange={(e) => store.setPaperY(Number(e.target.value))}
                     placeholder="Page Height"
                   />
                 </div>
@@ -105,6 +112,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="margin-top"
                     name="margins.top"
+                    value={store.margins.top}
+                    onChange={(e) =>
+                      store.setMargins({
+                        ...store.margins,
+                        top: Number(e.target.value),
+                      })
+                    }
                     placeholder="Top margin"
                   />
                 </div>
@@ -119,6 +133,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="margin-bottom"
                     name="margins.bottom"
+                    value={store.margins.bottom}
+                    onChange={(e) =>
+                      store.setMargins({
+                        ...store.margins,
+                        bottom: Number(e.target.value),
+                      })
+                    }
                     placeholder="Bottom margin"
                   />
                 </div>
@@ -133,6 +154,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="margin-left"
                     name="margins.left"
+                    value={store.margins.left}
+                    onChange={(e) =>
+                      store.setMargins({
+                        ...store.margins,
+                        left: Number(e.target.value),
+                      })
+                    }
                     placeholder="Left margin"
                   />
                 </div>
@@ -147,6 +175,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="margin-right"
                     name="margins.right"
+                    value={store.margins.right}
+                    onChange={(e) =>
+                      store.setMargins({
+                        ...store.margins,
+                        right: Number(e.target.value),
+                      })
+                    }
                     placeholder="Right margin"
                   />
                 </div>
@@ -164,7 +199,12 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                   <Label htmlFor="font" className="text-sm font-semibold">
                     Font
                   </Label>
-                  <Select name="font" required>
+                  <Select
+                    name="font"
+                    value={store.font}
+                    onValueChange={store.setFont}
+                    required
+                  >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Select Font" />
                     </SelectTrigger>
@@ -183,6 +223,8 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="font-size"
                     name="font_size"
+                    value={store.font_size}
+                    onChange={(e) => store.setFontSize(Number(e.target.value))}
                     placeholder="Font size"
                   />
                 </div>
@@ -197,6 +239,10 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="line-spacing"
                     name="line_spacing"
+                    value={store.line_spacing}
+                    onChange={(e) =>
+                      store.setLineSpacing(Number(e.target.value))
+                    }
                     placeholder="Line spacing"
                   />
                 </div>
@@ -211,6 +257,10 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="word-spacing"
                     name="word_spacing"
+                    value={store.word_spacing}
+                    onChange={(e) =>
+                      store.setWordSpacing(Number(e.target.value))
+                    }
                     placeholder="Word spacing"
                   />
                 </div>
@@ -234,10 +284,8 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                   <ColorPicker
                     id="background-color"
                     name="background_color"
-                    onChange={(val) => {
-                      console.log(val);
-                    }}
-                    value={{ r: 255, g: 255, b: 255, a: 1 }}
+                    onChange={store.setBackgroundColor}
+                    value={store.background_color}
                   />
                 </div>
                 <div>
@@ -247,10 +295,8 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                   <ColorPicker
                     id="font-color"
                     name="font_color"
-                    onChange={(val) => {
-                      console.log(val);
-                    }}
-                    value={{ r: 0, g: 0, b: 0, a: 1 }}
+                    onChange={store.setFontColor}
+                    value={store.font_color}
                   />
                 </div>
               </div>
@@ -276,6 +322,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="perturb-line-spacing"
                     name="perturbation.line_spacing"
+                    value={store.perturbation.line_spacing}
+                    onChange={(e) =>
+                      store.setPerturbation({
+                        ...store.perturbation,
+                        line_spacing: Number(e.target.value),
+                      })
+                    }
                     placeholder="Line spacing variation"
                   />
                 </div>
@@ -290,6 +343,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="perturb-font-size"
                     name="perturbation.font_size"
+                    value={store.perturbation.font_size}
+                    onChange={(e) =>
+                      store.setPerturbation({
+                        ...store.perturbation,
+                        font_size: Number(e.target.value),
+                      })
+                    }
                     placeholder="Font size variation"
                   />
                 </div>
@@ -304,6 +364,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="perturb-word-spacing"
                     name="perturbation.word_spacing"
+                    value={store.perturbation.word_spacing}
+                    onChange={(e) =>
+                      store.setPerturbation({
+                        ...store.perturbation,
+                        word_spacing: Number(e.target.value),
+                      })
+                    }
                     placeholder="Word spacing variation"
                   />
                 </div>
@@ -318,6 +385,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="perturb-x-offset"
                     name="perturbation.x_offset"
+                    value={store.perturbation.x_offset}
+                    onChange={(e) =>
+                      store.setPerturbation({
+                        ...store.perturbation,
+                        x_offset: Number(e.target.value),
+                      })
+                    }
                     placeholder="X offset"
                   />
                 </div>
@@ -332,6 +406,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="perturb-y-offset"
                     name="perturbation.y_offset"
+                    value={store.perturbation.y_offset}
+                    onChange={(e) =>
+                      store.setPerturbation({
+                        ...store.perturbation,
+                        y_offset: Number(e.target.value),
+                      })
+                    }
                     placeholder="Y offset"
                   />
                 </div>
@@ -346,6 +427,13 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     type="number"
                     id="perturb-rotation"
                     name="perturbation.rotation"
+                    value={store.perturbation.rotation}
+                    onChange={(e) =>
+                      store.setPerturbation({
+                        ...store.perturbation,
+                        rotation: Number(e.target.value),
+                      })
+                    }
                     placeholder="Rotation variation"
                   />
                 </div>
@@ -362,7 +450,14 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                 <Label htmlFor="rate" className="text-sm font-semibold">
                   Rate
                 </Label>
-                <Input type="number" id="rate" name="rate" placeholder="Rate" />
+                <Input
+                  type="number"
+                  id="rate"
+                  name="rate"
+                  value={store.rate}
+                  onChange={(e) => store.setRate(Number(e.target.value))}
+                  placeholder="Rate"
+                />
               </div>
             </AccordionContent>
           </AccordionItem>

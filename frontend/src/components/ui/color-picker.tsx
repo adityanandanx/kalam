@@ -2,14 +2,13 @@
 
 import type { ButtonProps } from "@/components/ui/button";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { useForwardedRef } from "@/lib/use-forwarded-ref";
-import { cn, hexToRgba, rgbaToHex } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import { forwardRef, useMemo, useState } from "react";
 import { RgbaColor, RgbaColorPicker } from "react-colorful";
 
@@ -20,7 +19,7 @@ interface ColorPickerProps {
 }
 
 const ColorPicker = forwardRef<
-  HTMLInputElement,
+  HTMLButtonElement,
   Omit<ButtonProps, "value" | "onChange" | "onBlur"> & ColorPickerProps
 >(
   (
@@ -38,6 +37,7 @@ const ColorPicker = forwardRef<
       <Popover onOpenChange={setOpen} open={open}>
         <PopoverTrigger asChild disabled={disabled} onBlur={onBlur}>
           <Button
+            ref={ref}
             {...props}
             className={cn("block", className)}
             name={name}
@@ -55,14 +55,6 @@ const ColorPicker = forwardRef<
         </PopoverTrigger>
         <PopoverContent className="w-full">
           <RgbaColorPicker color={value} onChange={onChange} />
-          <Input
-            maxLength={7}
-            onChange={(e) => {
-              onChange(hexToRgba(e.currentTarget.value));
-            }}
-            ref={ref}
-            value={rgbaToHex(value)}
-          />
         </PopoverContent>
       </Popover>
     );
