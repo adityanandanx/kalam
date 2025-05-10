@@ -4,6 +4,7 @@ from typing import Dict, List
 import os
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field, conint
 from PIL import Image
 
@@ -11,6 +12,15 @@ from core import handwrite_generator
 from tools import BasicTools
 
 app = FastAPI(title="HandWrite Generator API")
+
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],  # Frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],  # Allow all methods
+    allow_headers=["*"],  # Allow all headers
+)
 
 # Initialize the generator
 generator = handwrite_generator()

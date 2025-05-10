@@ -1,5 +1,6 @@
+import Provider from "@/components/provider";
 import type { Metadata } from "next";
-import { Space_Grotesk, Lora } from "next/font/google";
+import { Lora, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
 const lora = Lora({
@@ -27,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${lora.variable} ${spaceGrotesk.variable} antialiased`}>
-        {children}
+        <Provider>{children}</Provider>
       </body>
     </html>
   );

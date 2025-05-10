@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import { useControlsStore } from "@/lib/store";
+import { useGenerateText, useListFonts } from "@/lib/api-hooks";
 import React from "react";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
@@ -19,19 +20,67 @@ import {
 } from "../ui/select";
 import { Input } from "../ui/input";
 import { ColorPicker } from "../ui/color-picker";
+import { Button } from "../ui/button";
+import { ArrowRightIcon } from "lucide-react";
 
-const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
+interface ControlsProps extends React.ComponentProps<"div"> {
+  onGenerate?: (data: {
+    images: Record<string, string>;
+    page_count: number;
+  }) => void;
+}
+
+const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
   const store = useControlsStore();
+  const { data: fonts, isLoading: loadingFonts } = useListFonts();
+  const { mutate: generateText, isPending } = useGenerateText();
+
+  const handleGenerate = () => {
+    generateText(
+      {
+        text: store.text,
+        params: {
+          rate: store.rate,
+          paper_x: store.paper_x,
+          paper_y: store.paper_y,
+          font_size: store.font_size,
+          line_spacing: store.line_spacing,
+          margins: store.margins,
+          word_spacing: store.word_spacing,
+          perturbation: store.perturbation,
+          font: store.font,
+          background_color: {
+            ...store.background_color,
+            a: Math.round(store.background_color.a * 255),
+          },
+          font_color: {
+            ...store.font_color,
+            a: Math.round(store.font_color.a * 255),
+          },
+        },
+      },
+      {
+        onSuccess: (data) => {
+          onGenerate?.(data);
+        },
+      }
+    );
+  };
 
   return (
     <div
-      className={cn(
-        "h-screen overflow-y-auto flex flex-col gap-2 p-8",
-        className
-      )}
+      className={cn("h-screen overflow-y-auto flex flex-col gap-2", className)}
       {...props}
     >
-      <div>
+      <div className="sticky top-0 bg-card px-8 py-4 shadow-2xl flex items-center justify-between">
+        <span className="text-sm leading-none font-black">
+          Bhooth <br /> Haath
+        </span>
+        <Button>
+          Render <ArrowRightIcon />
+        </Button>
+      </div>
+      <div className="px-8 py-4">
         <Accordion
           type="multiple"
           defaultValue={[
@@ -204,14 +253,21 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
                     value={store.font}
                     onValueChange={store.setFont}
                     required
+                    disabled={loadingFonts}
                   >
                     <SelectTrigger className="w-full">
-                      <SelectValue placeholder="Select Font" />
+                      <SelectValue
+                        placeholder={
+                          loadingFonts ? "Loading fonts..." : "Select Font"
+                        }
+                      />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="f1">Font 1</SelectItem>
-                      <SelectItem value="f2">Font 2</SelectItem>
-                      <SelectItem value="f3">Font 3</SelectItem>
+                      {fonts?.map((font) => (
+                        <SelectItem key={font} value={font}>
+                          {font}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                   </Select>
                 </div>
@@ -462,6 +518,15 @@ const Controls = ({ className, ...props }: React.ComponentProps<"div">) => {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
+        <div className="sticky bottom-0 mt-4 flex w-full justify-center bg-background pb-4">
+          <Button
+            size="lg"
+            onClick={handleGenerate}
+            disabled={isPending || !store.text || !store.font}
+          >
+            {isPending ? "Generating..." : "Generate"}
+          </Button>
+        </div>
         <div className="h-[40vh]"></div>
       </div>
     </div>
