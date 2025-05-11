@@ -8,8 +8,8 @@ const queryClient = new QueryClient();
 const Provider = ({ children }: PropsWithChildren) => {
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
       <Toaster />
+      {children}
     </QueryClientProvider>
   );
 };

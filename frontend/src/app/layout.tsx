@@ -27,7 +27,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${lora.variable} ${spaceGrotesk.variable} antialiased`}>
+      <body
+        className={`${lora.variable} ${spaceGrotesk.variable} antialiased overflow-hidden`}
+      >
         <Provider>{children}</Provider>
       </body>
     </html>

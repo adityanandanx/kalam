@@ -64,8 +64,8 @@ const formSchema = z
   })
   .refine(
     (data) =>
-      data.margins.left + data.margins.right < data.paper_x &&
-      data.margins.top + data.margins.bottom < data.paper_y,
+      data.margins.left + data.margins.right + data.font_size < data.paper_x &&
+      data.margins.top + data.margins.bottom + data.line_spacing < data.paper_y,
     {
       message: "Margins exceed or match paper dimensions",
       path: ["margins"],
@@ -141,7 +141,7 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
       className={cn("h-screen overflow-y-auto flex flex-col gap-2", className)}
       {...props}
     >
-      <div className="sticky top-0 bg-card px-8 py-4 shadow-2xl flex items-center justify-between">
+      <div className="sticky top-0 bg-gradient-to-b from-background to-transparent backdrop-blur-md border-b px-8 py-4 shadow-2xl flex items-center justify-between z-50">
         <span className="text-sm leading-none font-black">
           Bhooth <br /> Haath
         </span>

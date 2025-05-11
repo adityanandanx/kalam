@@ -17,7 +17,7 @@ const Preview = ({ className, images, pageCount }: PreviewProps) => {
 
   return (
     <div className={className}>
-      <div className="flex flex-col gap-4 p-4">
+      <div className="relative flex flex-col gap-4 p-4">
         {Object.entries(images).map(([pageNum, base64Image]) => (
           <div key={pageNum} className="relative aspect-[1/1.414] w-full">
             <Image
@@ -28,6 +28,9 @@ const Preview = ({ className, images, pageCount }: PreviewProps) => {
             />
           </div>
         ))}
+        <div className="sticky bottom-4 w-full flex items-center justify-center">
+          <div className="bg-card px-4 py-1 rounded-full">Page: 1/2</div>
+        </div>
       </div>
     </div>
   );

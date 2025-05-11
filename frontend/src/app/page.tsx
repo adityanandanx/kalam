@@ -17,7 +17,7 @@ export default function Home() {
   } | null>(null);
 
   return (
-    <main className="">
+    <main className="h-screen">
       <div className="h-full overflow-hidden">
         {/* Desktop Layout */}
         <div className="hidden h-full lg:block">
