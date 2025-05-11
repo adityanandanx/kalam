@@ -16,6 +16,7 @@ api.interceptors.response.use(
         console.log("Error data:", error.response.data);
         console.log("Error status:", error.response.status);
         console.log("Error headers:", error.response.headers);
+        error.message = error.response.data.detail;
       }
     } else if (error.request) {
       // The request was made but no response was received
