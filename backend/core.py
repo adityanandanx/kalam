@@ -8,7 +8,7 @@ from tools import BasicTools
 class handwrite_generator(object):
     def __init__(self):
         self.template_params = {
-            "rate": 4,  # Image scaling ratio
+            "rate": 2,  # Image scaling ratio
             "default_paper_x": 667,  # Default paper width in px
             "default_paper_y": 945,  # Default paper height in px
             "default_font": BasicTools.get_ttf_file_path()[1][

@@ -1,16 +1,18 @@
 "use client";
-import { cn } from "@/lib/utils";
-import { useControlsStore } from "@/lib/store";
 import { useGenerateText, useListFonts } from "@/lib/api-hooks";
+import { useControlsStore } from "@/lib/store";
+import { cn } from "@/lib/utils";
 import React from "react";
-import { Label } from "../ui/label";
-import { Textarea } from "../ui/textarea";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
+import { Button } from "../ui/button";
+import { ColorPicker } from "../ui/color-picker";
+import { Input } from "../ui/input";
+import { Label } from "../ui/label";
 import {
   Select,
   SelectContent,
@@ -18,10 +20,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import { Input } from "../ui/input";
-import { ColorPicker } from "../ui/color-picker";
-import { Button } from "../ui/button";
-import { ArrowRightIcon } from "lucide-react";
+import { Textarea } from "../ui/textarea";
 
 interface ControlsProps extends React.ComponentProps<"div"> {
   onGenerate?: (data: {
@@ -76,8 +75,12 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
         <span className="text-sm leading-none font-black">
           Bhooth <br /> Haath
         </span>
-        <Button>
-          Render <ArrowRightIcon />
+        <Button
+          size="lg"
+          onClick={handleGenerate}
+          disabled={isPending || !store.text || !store.font}
+        >
+          {isPending ? "Generating..." : "Generate"}
         </Button>
       </div>
       <div className="px-8 py-4">
@@ -518,15 +521,6 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-        <div className="sticky bottom-0 mt-4 flex w-full justify-center bg-background pb-4">
-          <Button
-            size="lg"
-            onClick={handleGenerate}
-            disabled={isPending || !store.text || !store.font}
-          >
-            {isPending ? "Generating..." : "Generate"}
-          </Button>
-        </div>
         <div className="h-[40vh]"></div>
       </div>
     </div>

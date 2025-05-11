@@ -1,4 +1,4 @@
-import axios, { AxiosError, isAxiosError } from "axios";
+import axios, { isAxiosError } from "axios";
 
 export const api = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL || "http://127.0.0.1:8000",
