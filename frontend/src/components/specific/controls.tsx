@@ -33,6 +33,7 @@ import {
   FormLabel,
   FormMessage,
 } from "../ui/form";
+import { Slider } from "../ui/slider";
 
 // Add validation schema
 
@@ -205,16 +206,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Page Width</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={100}
+                              max={5000}
+                              step={10}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Page Width"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -225,16 +235,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Page Height</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={100}
+                              max={5000}
+                              step={10}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Page Height"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -255,16 +274,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Top Margin</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={500}
+                              step={1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Top margin"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -275,16 +303,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Bottom Margin</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={500}
+                              step={1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Bottom margin"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -295,16 +332,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Left Margin</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={500}
+                              step={1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Left margin"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -315,16 +361,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Right Margin</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={500}
+                              step={1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Right margin"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -388,16 +443,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Font Size</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={1}
+                              max={200}
+                              step={1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Font size"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -408,16 +472,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Line Spacing</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={1}
+                              max={200}
+                              step={1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Line spacing"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -428,16 +501,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Word Spacing</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={100}
+                              step={1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Word spacing"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -496,16 +578,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Line Spacing Variation</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={10}
+                              step={0.1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Line spacing variation"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -516,16 +607,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Font Size Variation</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={10}
+                              step={0.1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Font size variation"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -536,16 +636,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Word Spacing Variation</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={10}
+                              step={0.1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Word spacing variation"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -556,16 +665,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>X Offset</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={10}
+                              step={0.1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="X offset"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -576,16 +694,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Y Offset</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={10}
+                              step={0.1}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Y offset"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -596,16 +723,25 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>Rotation</FormLabel>
-                        <FormControl>
+                        <div className="flex gap-4 items-center">
+                          <FormControl>
+                            <Slider
+                              min={0}
+                              max={1}
+                              step={0.01}
+                              value={[field.value]}
+                              onValueChange={([value]) => field.onChange(value)}
+                            />
+                          </FormControl>
                           <Input
                             type="number"
-                            placeholder="Rotation variation"
+                            className="w-20"
                             {...field}
                             onChange={(e) =>
                               field.onChange(Number(e.target.value))
                             }
                           />
-                        </FormControl>
+                        </div>
                         <FormMessage />
                       </FormItem>
                     )}
@@ -624,17 +760,26 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
                   name="rate"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Rate</FormLabel>
-                      <FormControl>
+                      <FormLabel>Generation Rate</FormLabel>
+                      <div className="flex gap-4 items-center">
+                        <FormControl>
+                          <Slider
+                            min={1}
+                            max={64}
+                            step={1}
+                            value={[field.value]}
+                            onValueChange={([value]) => field.onChange(value)}
+                          />
+                        </FormControl>
                         <Input
                           type="number"
-                          placeholder="Rate"
+                          className="w-20"
                           {...field}
                           onChange={(e) =>
                             field.onChange(Number(e.target.value))
                           }
                         />
-                      </FormControl>
+                      </div>
                       <FormMessage />
                     </FormItem>
                   )}
