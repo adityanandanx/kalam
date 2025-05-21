@@ -1,6 +1,6 @@
 import Provider from "@/components/provider";
 import type { Metadata } from "next";
-import { Lora, Space_Grotesk } from "next/font/google";
+import { Lora, Space_Grotesk, Kalam } from "next/font/google";
 import "./globals.css";
 
 const lora = Lora({
@@ -13,6 +13,12 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
   display: "swap",
+});
+
+const kalam = Kalam({
+  subsets: ["latin", "devanagari"],
+  variable: "--font-kalam",
+  weight: "300",
 });
 
 export const metadata: Metadata = {
@@ -28,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${lora.variable} ${spaceGrotesk.variable} antialiased overflow-hidden`}
+        className={`${lora.variable} ${spaceGrotesk.variable} ${kalam.variable} antialiased overflow-hidden`}
       >
         <Provider>{children}</Provider>
       </body>

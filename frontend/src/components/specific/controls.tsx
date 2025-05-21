@@ -142,8 +142,8 @@ const Controls = ({ className, onGenerate, ...props }: ControlsProps) => {
       {...props}
     >
       <div className="sticky top-0 bg-gradient-to-b from-background to-transparent backdrop-blur-md border-b px-8 py-4 shadow-2xl flex items-center justify-between z-50">
-        <span className="text-sm leading-none font-black">
-          Bhooth <br /> Haath
+        <span className="text-3xl leading-none font-black font-display">
+          कlam
         </span>
         <Button
           size="lg"
