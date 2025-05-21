@@ -1,8 +1,8 @@
-# HandWrite Generator API Specification
+# कlam Generator API Specification
 
 ## Overview
 
-The HandWrite Generator API provides endpoints to generate handwritten text images using various fonts and customization options.
+The कlam Generator API provides endpoints to generate handwritten text images using various fonts and customization options.
 
 ## Base URL
 
