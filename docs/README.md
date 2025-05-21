@@ -6,7 +6,7 @@
 <img src="https://img.shields.io/badge/license-MIT-blue.svg"/>
 <img src="https://img.shields.io/badge/version-0.1.0-green.svg"/>
 <img src="https://img.shields.io/badge/Python-3.12%2B-blue"/>
-<img src="https://img.shields.io/badge/Next.js-15.3%2B-black"/>
+<img src="https://img.shields.io/badge/Next.js-15.3%2B-black"/>/
 </p>
 
 कlam is a powerful handwriting generation tool that allows you to convert digital text into realistic-looking handwritten documents. Perfect for adding a personal touch to digital content or quickly generating handwritten assignments.
@@ -140,7 +140,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE.md) file for details.
 
 ## 🙏 Acknowledgements
 
